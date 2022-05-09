@@ -1,18 +1,37 @@
-export const UserCard = () => {
+import styled from "styled-components";
+import { Card } from "../../atoms/card/Card";
+import { IconAndName } from "../../molecules/user/IconAndName";
+
+export const UserCard = (props) => {
+  const { user } = props;
+
+  //unsplach・・・画像提供サイト。[photo/]を削除して[source.]を付ける
   return (
-    <div>
-      <img alt="プロフィール" />
-      <p>name</p>
-      <dl>
+    <Card>
+      <SDl>
+        <IconAndName image={user.image} name={user.name} />
         <dt>mail</dt>
-        <dd>test@aaa.com</dd>
+        <dd>{user.email}</dd>
         <dt>TEL</dt>
-        <dd>111-2222-3333</dd>
+        <dd>{user.phone}</dd>
         <dt>Company</dt>
-        <dd>Amazon.inc</dd>
+        <dd>{user.company.name}</dd>
         <dt>Web</dt>
-        <dd>https:/test.com</dd>
-      </dl>
-    </div>
+        <dd>{user.website}</dd>
+      </SDl>
+    </Card>
   );
 };
+
+const SDl = styled.dl`
+  text-align: left;
+  margin-bottom: 0px;
+  dt {
+    float: left;
+  }
+  dd {
+    padding-left: 45px;
+    padding-bottom: 8px;
+    overflow-wrap: break-word;
+  }
+`;
